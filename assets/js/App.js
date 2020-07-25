@@ -15,7 +15,10 @@
   let img;
 
   function preload() {
-    img = loadImage('assets/Ghost-red.png');
+    img = loadImage('assets/Ghost-blinky.png');
+    pink = loadImage('assets/Ghost-pinky.png')
+    blue = loadImage('assets/Ghost-inky.png');
+    brown = loadImage('assets/Ghost-Clyde.png')
     font = loadFont("Raleway-Regular.ttf");
   };
   function setup() {
@@ -340,14 +343,17 @@
   function createMaze() {
     fill(255, 255, 100)
     arc(pacman.x * standardSize, pacman.y * standardSize, standardSize, standardSize, pacman.mouth - open * PI, pacman.mouth + open * PI, PIE);
-    fill(30, 20, 80)
+    fill(0, 61, 153)
     strokeWeight(1);
-    for (var i = 0; i < Blocks.length; i++) square((Blocks[i].x - 1 / 2) * standardSize, (Blocks[i].y - 1 / 2) * standardSize, standardSize);
+    for (var i = 0; i < Blocks.length; i++) square((Blocks[i].x - 1 / 2) * standardSize, (Blocks[i].y - 1 / 2) * standardSize, standardSize, 20);
     fill(180, 180, 200);
     strokeWeight(0); 
     for (i = 0; i < Foods.length; i++) ellipse(Foods[i].x * standardSize, Foods[i].y * standardSize, standardSize / 4);
     fill(0, 127, 255)
     for (i = 0; i < Powers.length; i++) ellipse(Powers[i].x * standardSize, Powers[i].y * standardSize, 5 * standardSize / 8);
     fill(240, 20, 20)
-    for (i = 0; i < Enemies.length; i++) image(img,( Enemies[i].x -1/2) * standardSize, (Enemies[i].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(img,( Enemies[0].x -1/2) * standardSize, (Enemies[0].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(blue,( Enemies[1].x -1/2) * standardSize, (Enemies[1].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pink,( Enemies[2].x -1/2) * standardSize, (Enemies[2].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(brown,( Enemies[3].x -1/2) * standardSize, (Enemies[3].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
   }
