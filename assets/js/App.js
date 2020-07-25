@@ -20,7 +20,7 @@
   };
   function setup() {
     var vw, vh;
-    if (11 * windowHeight / 14 < windowWidth) {
+    if (11 * windowHeight / 7 < windowWidth) {
       standardSize = windowHeight / 14;
       vw = standardSize * 22;
       vh = standardSize * 14;
@@ -34,6 +34,7 @@
     textAlign(CENTER);
     textSize(standardSize * 0.5);
     fill(252);
+    // strokeWeight(0);
     maze();
   };
   function draw() {
@@ -104,7 +105,7 @@
     gameState = "game";
     setInterval(() => {
       moveEnemies();
-    }, 200);
+    }, 1000);
     setTimeout(() => { activateEnemies() }, 5000);
   }
 
@@ -131,7 +132,7 @@
             if (pacman.y > -11 / 2) newy -= 1;
           } else {
             pacman.mouth = HALF_PI;
-            if (pacman.y < 7) newy += 1;
+            if (pacman.y < 6) newy += 1;
           }
         } else {
           console.log(mouseX, mouseY);
@@ -146,7 +147,7 @@
             if (pacman.y > -11 / 2) newy -= 1;
           } else {
             pacman.mouth = HALF_PI;
-            if (pacman.y < 7) newy += 1;
+            if (pacman.y < 6) newy += 1;
           }
         }
         movePac( newx, newy);
@@ -174,7 +175,7 @@
         if (pacman.y > -11 / 2) newy -= 1;
       } else if (keyCode === DOWN_ARROW) {
         pacman.mouth = HALF_PI;
-        if (pacman.y < 7) newy += 1;
+        if (pacman.y < 6) newy += 1;
       }
       movePac( newx, newy);
     }
@@ -207,6 +208,21 @@
         pacman.power = true;
         Powers.splice(i, 1);
         i--;
+      }
+    }
+    for (i = 0; i < Enemies.length; i++) {
+      dis = dist(newx * standardSize, newy * standardSize, Enemies[i].x * standardSize, Enemies[i].y * standardSize);
+      if (dis < 1) {
+        if (pacman.power) {
+          Enemies[i].state = 0;
+          Enemies[i].x = Enemies[i].init.x;
+          Enemies[i].y = Enemies[i].init.y;
+          score += 100;
+          pacman.power = false;
+        } else {
+          gameState = "go";
+          end_text = "YOU LOSE";
+        }
       }
     }
   };
@@ -274,8 +290,8 @@
     Foods = [];
     Powers = [];
     Enemies = [];
-    var fCount = 175;
-    var pCount = 5;
+    var fCount = 172;
+    var pCount = 8;
     var addedPac = false;
     var level = [
       ['*', '*', '*', '*', '', '', '', '', '*', '*', '*', '*', '*', '*', '', '', '', '', '*', '*', '*', '*'],
@@ -291,9 +307,9 @@
       ['*', '', '*', '', '', '', '', '', '*', 'e', 'e', 'e', 'e', '*', '', '', '', '', '*', '', '*', ''],
       ['', '', '', '', '', '', '*', '', '*', '*', '*', '*', '*', '*', '', '*', '', '', '', '', '', ''],
       ['', '*', '', '', '*', '', '*', '', '', '', '', '', '', '', '', '*', '', '', '*', '', '', '*'],
-      ['', '*', '', '', '*', '', '*', '', '', '', '', '', '', '', '', '*', '', '', '*', '', '', '*']
+      // ['', '*', '', '', '*', '', '*', '', '', '', '', '', '', '', '', '*', '', '', '*', '', '', '*']
     ]
-    for (var i = 0; i < 14; i++) {
+    for (var i = 0; i < 13; i++) {
       for (var j = 0; j < 22; j++) {
         if (level[i][j] === '*') {
           Blocks.push({ x: (j - 11 + 1 / 2), y: (i - 6 + 1 / 2) });
@@ -325,11 +341,13 @@
     fill(255, 255, 100)
     arc(pacman.x * standardSize, pacman.y * standardSize, standardSize, standardSize, pacman.mouth - open * PI, pacman.mouth + open * PI, PIE);
     fill(30, 20, 80)
+    strokeWeight(1);
     for (var i = 0; i < Blocks.length; i++) square((Blocks[i].x - 1 / 2) * standardSize, (Blocks[i].y - 1 / 2) * standardSize, standardSize);
-    fill(180, 180, 200); 
+    fill(180, 180, 200);
+    strokeWeight(0); 
     for (i = 0; i < Foods.length; i++) ellipse(Foods[i].x * standardSize, Foods[i].y * standardSize, standardSize / 4);
     fill(0, 127, 255)
     for (i = 0; i < Powers.length; i++) ellipse(Powers[i].x * standardSize, Powers[i].y * standardSize, 5 * standardSize / 8);
     fill(240, 20, 20)
-    for (i = 0; i < Enemies.length; i++) ellipse(Enemies[i].x * standardSize, Enemies[i].y * standardSize, 7 * standardSize / 8);
+    for (i = 0; i < Enemies.length; i++) image(img,( Enemies[i].x -1/2) * standardSize, (Enemies[i].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
   }
