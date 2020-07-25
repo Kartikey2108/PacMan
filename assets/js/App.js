@@ -19,7 +19,7 @@
     pinky = loadImage('assets/ghost-pinky.png')
     inky = loadImage('assets/Ghost-inky.png');
     clyde = loadImage('assets/Ghost-Clyde.png')
-    font = loadFont("Raleway-Regular.ttf");
+    font = loadFont("Satisfy-Regular.ttf");
   };
   function setup() {
     var vw, vh;
