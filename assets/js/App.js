@@ -105,7 +105,7 @@
     gameState = "game";
     setInterval(() => {
       moveEnemies();
-    }, 1000);
+    }, 200);
     setTimeout(() => { activateEnemies() }, 5000);
   }
 
