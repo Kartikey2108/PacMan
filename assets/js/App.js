@@ -12,13 +12,13 @@
   let Enemies = [];
   let Gate;
   let firedtwice = false;
-  let img;
+  let pinky, inky, blinky, clyde;
 
   function preload() {
-    img = loadImage('assets/Ghost-blinky.png');
-    pink = loadImage('assets/Ghost-pinky.png')
-    blue = loadImage('assets/Ghost-inky.png');
-    brown = loadImage('assets/Ghost-Clyde.png')
+    blinky = loadImage('assets/Ghost-blinky.png');
+    pinky = loadImage('assets/ghost-pinky.png')
+    inky = loadImage('assets/Ghost-inky.png');
+    clyde = loadImage('assets/Ghost-Clyde.png')
     font = loadFont("Raleway-Regular.ttf");
   };
   function setup() {
@@ -298,14 +298,14 @@
     var addedPac = false;
     var level = [
       ['*', '*', '*', '*', '', '', '', '', '*', '*', '*', '*', '*', '*', '', '', '', '', '*', '*', '*', '*'],
-      ['*', '', '', '', '', '', '', 'eout', '', '', '*', '*', '', '', '', '', '', '', '', '', '', '*'],
+      ['*', '', '', '', '', '', '', '', '', '', '*', '*', '', '', '', '', '', '', '', '', '', '*'],
       ['*', '', '*', '*', '', '', '', '*', '*', '', '*', '*', '', '*', '*', '', '', '', '*', '*', '', '*'],
       ['*', '', '*', '*', '', '', '', '', '', '*', '', '', '*', '', '', '', '', '', '*', '*', '', '*'],
       ['*', '', '*', '', '', '', '', '*', '*', '', '', '', '', '*', '*', '', '', '', '', '*', '', '*'],
       ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
       ['', '*', '*', '', '', '', '*', '', '', '*', '*', '*', '*', '', '', '*', '', '', '', '', '*', ''],
       ['', '', '', '', '', '', '*', '*', '*', '', '*', '*', '', '*', '*', '*', '', '', '', '', '', '*'],
-      ['', '*', '*', '', '', '', '*', '', '', '', 'eout', '', '', '', '', '*', '', '', '', '', '', '*'],
+      ['', '*', '*', '', '', '', '*', '', '', '', 'eout', 'eout', '', '', '', '*', '', '', '', '', '', '*'],
       ['*', '', '*', '', '', '', '*', '', '*', '*', '*', '*', '*', '*', '', '*', '', '', '', '', '', '*'],
       ['*', '', '*', '', '', '', '', '', '*', 'e', 'e', 'e', 'e', '*', '', '', '', '', '*', '', '*', ''],
       ['', '', '', '', '', '', '*', '', '*', '*', '*', '*', '*', '*', '', '*', '', '', '', '', '', ''],
@@ -352,8 +352,8 @@
     fill(0, 127, 255)
     for (i = 0; i < Powers.length; i++) ellipse(Powers[i].x * standardSize, Powers[i].y * standardSize, 5 * standardSize / 8);
     fill(240, 20, 20)
-    image(img,( Enemies[0].x -1/2) * standardSize, (Enemies[0].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(blue,( Enemies[1].x -1/2) * standardSize, (Enemies[1].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(pink,( Enemies[2].x -1/2) * standardSize, (Enemies[2].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(brown,( Enemies[3].x -1/2) * standardSize, (Enemies[3].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(blinky, (Enemies[0].x -1/2) * standardSize, (Enemies[0].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(inky, (Enemies[1].x -1/2) * standardSize, (Enemies[1].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pinky, (Enemies[2].x -1/2) * standardSize, (Enemies[2].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(clyde, (Enemies[3].x -1/2) * standardSize, (Enemies[3].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
   }
