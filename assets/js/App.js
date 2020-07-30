@@ -12,14 +12,15 @@
   let Enemies = [];
   let Gate;
   let firedtwice = false;
-  let pinky, inky, blinky, clyde;
+  let pinky, inky, blinky, clyde, vulnerable;
 
   function preload() {
     blinky = loadImage('assets/Ghost-blinky.png');
     pinky = loadImage('assets/ghost-pinky.png')
     inky = loadImage('assets/Ghost-inky.png');
-    clyde = loadImage('assets/Ghost-Clyde.png')
-    font = loadFont("Raleway-Regular.ttf");
+    clyde = loadImage('assets/Ghost-Clyde.png');
+    vulnerable = loadImage('assets/Ghost-Vunerable.png');
+    font = loadFont("Lora-Regular.ttf");
   };
   function setup() {
     var vw, vh;
@@ -341,10 +342,10 @@
   }
 
   function createMaze() {
-    fill(255, 255, 100)
+    fill(255, 255, 100);
+    strokeWeight(1);
     arc(pacman.x * standardSize, pacman.y * standardSize, standardSize, standardSize, pacman.mouth - open * PI, pacman.mouth + open * PI, PIE);
     fill(0, 61, 153)
-    strokeWeight(1);
     for (var i = 0; i < Blocks.length; i++) square((Blocks[i].x - 1 / 2) * standardSize, (Blocks[i].y - 1 / 2) * standardSize, standardSize, 20);
     fill(180, 180, 200);
     strokeWeight(0); 
@@ -352,8 +353,8 @@
     fill(0, 127, 255)
     for (i = 0; i < Powers.length; i++) ellipse(Powers[i].x * standardSize, Powers[i].y * standardSize, 5 * standardSize / 8);
     fill(240, 20, 20)
-    image(blinky, (Enemies[0].x -1/2) * standardSize, (Enemies[0].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(inky, (Enemies[1].x -1/2) * standardSize, (Enemies[1].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(pinky, (Enemies[2].x -1/2) * standardSize, (Enemies[2].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
-    image(clyde, (Enemies[3].x -1/2) * standardSize, (Enemies[3].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pacman.power ? vulnerable : blinky, (Enemies[0].x -1/2) * standardSize, (Enemies[0].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pacman.power ? vulnerable : inky, (Enemies[1].x -1/2) * standardSize, (Enemies[1].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pacman.power ? vulnerable : pinky, (Enemies[2].x -1/2) * standardSize, (Enemies[2].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
+    image(pacman.power ? vulnerable : clyde, (Enemies[3].x -1/2) * standardSize, (Enemies[3].y -1/2) * standardSize, 7 * standardSize / 8, 7*standardSize /8);
   }
